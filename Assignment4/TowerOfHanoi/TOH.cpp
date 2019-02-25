@@ -26,44 +26,47 @@ void towerOfHanoi(int numDisks)
 }
 class Disk
 {
-	int Value;
+public:
+	int value;
 	/*
 	Purpose: compare this disk against another disk, returning true if this disk is larger, returning false if it is not
 	Aurguments:
 	Return:
 	*/
 	//-------
+	//getValue function here
 	bool isLarger(Disk& compareDisk);
 	Disk();
 	Disk(int diskValue);
-	Disk~;
+	~Disk();
 };
 
 class Tower
 {
+public:
 	string name;
 	int stackSize;
-	Disk[] diskStack;
+	Disk diskStack[MAX] ;
 	//-----
 	void moveDiskToTower(Tower& toTower);
-	void print;
+	void print();
 	Tower(string name, unsigned int stackSize);
-	Tower~;
+	~Tower();
 };
 
 //constructor
 Disk::Disk()
 {
-	this.Value = NULL;
+	value = NULL;
 }
 Disk::Disk(int diskValue)
 {
-	this.Value = diskValue;
+	value = diskValue;
 }
 
 bool Disk::isLarger(Disk& compareDisk)
 {
-	
+
 }
 
 void Tower::moveDiskToTower(Tower& toTower)
@@ -71,13 +74,16 @@ void Tower::moveDiskToTower(Tower& toTower)
 
 
 }
-void Tower::print
+void Tower::print()
 {
-	cout << this.name << ":";
-	for (int i = 0; i < this.stackSize)
-	
-}
-Tower::Tower(string name, unsigned int stackSize)
-{
+	cout << name << ":";
+	for (int i = 0; i < stackSize; i++)
+	{
+	cout << diskStack[i].value << " ";
+	}
 
 }
+Tower::Tower(string name, unsigned int stackSize)
+	{
+
+	}
