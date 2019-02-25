@@ -13,17 +13,24 @@ int main()
 	cout << "Enter the number of disks in the game: ";
 	cin >> numDisks;
 	cout << "\n \n      For reference on the posts: " << "\n \n      Top:   Bottom:" << "\n          |        |";
-	for (i = numDisks; i >= 1; i--)
-	{
-		placedisk1(i);			//places the disks on the first pole
-	}
-	towerOfHanoi(numDisks);		//
+	Tower tower1("Tower 1", numDisks);
+	Tower tower2("Tower 2", numDisks);
+	Tower tower3("Tower 3", numDisks);
+	
+	towerOfHanoi(numDisks, tower1, tower2, tower3);		
 	return 0;
 }
-void towerOfHanoi(int numDisks)
+void towerOfHanoi(int numDisks, Tower tower1, Tower tower2, Tower tower3)
 {
-
+	int i, top, a, b;
+	for (i = 0; i < (pow(2,numDisks)); i++)
+	{
+		tower1.print();
+		tower2.print();
+		tower3.print();
+	}
 }
+
 class Disk
 {
 public:
@@ -46,11 +53,22 @@ class Tower
 public:
 	string name;
 	int stackSize;
-	Disk diskStack[MAX] ;
+	Disk diskStack[MAX];
 	//-----
-	void moveDiskToTower(Tower& toTower);
+	void moveDiskToTower(Tower& toTower, int stackSize);
+
 	void print();
+
+	void initPlaceDisks(unsigned int numDisks);
+
 	Tower(string name, unsigned int stackSize);
+
+	int topOfTower(unsigned int stackSize);
+
+	void addDisk(Disk givenDisk);
+
+	void removeDisk();
+
 	~Tower();
 };
 
@@ -66,24 +84,64 @@ Disk::Disk(int diskValue)
 
 bool Disk::isLarger(Disk& compareDisk)
 {
-
+	if (value > compareDisk.value)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
-void Tower::moveDiskToTower(Tower& toTower)
+void Tower::moveDiskToTower(Tower& toTower, int towerStackSize)
 {
-
-
+	toTower.addDisk(diskStack[stackSize]);
+	removeDisk();
 }
+
 void Tower::print()
 {
 	cout << name << ":";
 	for (int i = 0; i < stackSize; i++)
 	{
-	cout << diskStack[i].value << " ";
+		cout << diskStack[i].value << " ";
 	}
-
 }
-Tower::Tower(string name, unsigned int stackSize)
-	{
 
+Tower::Tower(string towerName, unsigned int stackSize)
+{
+	name = towerName;
+
+	for (int i = 0; i <= stackSize; i++)
+	{
+		diskStack[i].value = 0;
 	}
+}
+
+void Tower::initPlaceDisks(unsigned int numDisks)
+{
+	int counter = 0;
+	for (int i = numDisks; i >= 1; i--)
+	{
+		diskStack[counter].value = i;		//initial disk placement
+		counter++;						
+	}
+}
+
+int Tower::topOfTower(unsigned int stackSize)
+{
+	int topStack = diskStack[stackSize].value;
+	return topStack;
+}
+
+void Tower::addDisk(Disk givenDisk)
+{
+	stackSize++;													//extend this Tower's length
+	diskStack[stackSize] = givenDisk;
+}
+void Tower::removeDisk()
+{
+	diskStack[stackSize].value = 0;										//change current stack's top disk to 0
+	stackSize--;		 																	//shorten current stack's length
+}
