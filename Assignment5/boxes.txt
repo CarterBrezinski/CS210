@@ -1,12 +1,12 @@
 Class ID   Number of Boxes Sold 
 Class   1   0
-Class   2   24
-Class   3   25
-Class   4   26
-Class   5   0
+Class   2   43
+Class   3   0
+Class   4   46
+Class   5   4
 Class   6   0
-Class   7   0
+Class   7   23
 Class   8   0
 Class   9   0
 Class   10   0
- The Winner is Class 2
+ The Winner is Class 4

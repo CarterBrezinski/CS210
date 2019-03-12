@@ -5,6 +5,8 @@
 //provided and define
 //the required functions.
 
+
+
 class UnsortedType
 {
 	//Declare the
@@ -100,7 +102,7 @@ public:
 	int getWinner()
 	{
 		int winner = 0;
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			if (list[i].CompareTo(list[winner]) > 0)
 			{

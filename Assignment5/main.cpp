@@ -75,7 +75,7 @@ int main() {
 		myfile << "Class   " << i + 1 << "   " << obj.Get_no_of_boxes(i + 1) << endl;
 	}
 
-	myfile << " The Winner is Class " << obj.getWinner() << endl;
+	myfile << " The Winner is Class " << (obj.getWinner() + 1) << endl;
 
 	myfile.close();
 	return 0;
